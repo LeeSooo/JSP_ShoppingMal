@@ -1,0 +1,15 @@
+/* main style css (2022-11-19 이수) */
+.section_header{
+	box-sizing: content-box;
+	margin-top:20px;
+	padding-bottom:20px;
+	text-align: center;
+	text-align: center;
+}
+.section_header img{
+	padding-bottom:20px;
+	border-bottom: 1px solid #999;
+}
+.article h1 {
+	font: bold 22px 'arial';
+}

@@ -1,0 +1,127 @@
+/* header style css (2022-11-18 이수) */
+
+/* 색상 수정 변수 (2022-08-29 이수) */
+.header {
+	display:block; 				/*세로 배치*/
+	flex-direction: column;
+	flex-wrap: wrap;
+	text-align: center;
+	box-sizing: border-box;
+	border-bottom: 1px solid #999;
+	width: 100%;
+}
+
+.navbar_logo{
+    padding-top: 10px;
+    justify-content: center;
+	margin-top: 15px;
+}
+
+.header_logo a{
+    font: bold 25px 'arial';
+    letter-spacing: 2px;
+    margin-left:30px;
+}
+
+.navbar_logo p{
+    font: bold 10px 'arial';
+    letter-spacing: 2px;
+}
+
+
+.navbar_centermenu{
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.navbar_centermenu ul{
+	margin-top: 35px;
+	display: flex;
+	justify-content: center;
+}
+
+.navbar_centermenu ul li a{
+	display: block;
+	font: bold 14px 'arial';
+	color: #999;
+	margin: 0px 16px;
+	letter-spacing: 1px;
+}
+
+.header li :hover{
+	background-color: #f5deb3;
+	border-radius: 3px;
+}
+
+.navbar_toggleBtn {
+    display: none;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+.navbar_topmenu{
+	padding-top: 10px;
+	padding-right: 10px;
+}
+.navbar_topmenu{
+	display: flex;
+	justify-content: flex-end;
+}
+.navbar_topmenu a{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+navbar_topmenu ul li a:hover{
+	background-color: #f5deb3;
+	border-radius: 4px;
+}
+
+@media screen and (max-width: 1000px) {
+	.header{
+		display:block; 				/*세로 배치*/
+		flex-direction: column;		/*위에서 밑으로 배치*/
+		align-items: left;		/*수직으로 중간 배치*/
+		
+		padding-bottom: 0px;
+	}
+	
+	.navbar_centermenu ul{
+	  	display: block;
+		flex-direction: column;		/*위에서 밑으로 배치*/
+		justify-content: center;
+		margin: 10px;
+		text-align: center;
+		align-items: baseline; 
+	}
+	
+	.navbar_centermenu a{
+	  	padding-top: 10px;
+	  	padding-bottom: 10px;
+	}
+	
+	.navbar_topmenu {
+		padding-bottom: 10px;
+	}
+	
+	.header_logo {
+		padding-bottom: 10px;
+	}
+	
+	.navbar_centermenu {
+		display: none;
+	}	
+	.navbar_toggleBtn {
+	   display: block;
+	 }
+	
+	 .navbar_centermenu.active{
+	   display: block;
+	   .login{
+	   	top:70%;
+	   }
+	 }
+}
