@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="./css/header_style.css">
 <link rel="stylesheet" type="text/css" href="./css/login_style.css">
 <script src="https://kit.fontawesome.com/22a8f0c699.js"></script>
+<!-- 부트스트랩을 기본 디자인으로 사용 -->
+<link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
 <script src="./js/main.js" defer></script>
 
 <title>로그인 페이지</title>
@@ -135,6 +137,7 @@ input[type="submit"]:hover{
 </style>
 </head>
 <body>
+<div>
 	<!-- 상단 헤더 (2022-11-18 이수) -->
  	<!-- 상단우측 메뉴바 버튼 -->
  	<header class="header">
@@ -183,9 +186,9 @@ input[type="submit"]:hover{
 		</div>
 		
 		<!-- 상단 센터메뉴 -->
-		<div class="navbar_centermenu">
+		<div class="navbar_centermenu" style="margin-bottom: 10px;">
 			<ul>
-				<li><a href="#">모든상품</a></li>
+				<li><a href="product.jsp">모든상품</a></li>
 				<li><a href="#">인기상품</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>
@@ -199,12 +202,12 @@ input[type="submit"]:hover{
 	    <h1>Login</h1>
 	    	<form method = "post" action="loginAction.jsp" style="padding-bottom: 30px;">
 		    	<div class ="form-group">
-			        <input type ="text" class="form-control" name ="아이디" maxlength='20' required>
+			        <input type ="text" class="form-control" name ="userID" maxlength='20' required>
 			    	<span></span>
 			    	<label>User ID</label>
 		    	</div>
 			    <div class ="form-group">
-			        <input type ="password" class="form-control" name ="비밀번호" maxlength='20' required>
+			        <input type ="password" class="form-control" name ="userPassword" maxlength='20' required>
 			    	<span></span>
 			    	<label> Password</label>
 			    </div>
@@ -214,6 +217,7 @@ input[type="submit"]:hover{
     			</div>
 		    	<input type="submit"  class="btn btn-primary form-control" value="로그인">
    		</form>
+   	</div>
    	</div>
 </body>
 </html>

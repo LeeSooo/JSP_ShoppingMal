@@ -1,4 +1,4 @@
-<!-- 로그인 처리 페이지 (2022-10-28 이수) -->
+<!-- 로그인 처리 페이지 (2022-11-26 이수) -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="user.UserDAO" %>
@@ -14,7 +14,7 @@
 <head>
  <!-- 반응형 웹에 사용하는 메타태그 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP 쇼핑몰 웹 사이트</title>
+<title>로그인 처리중...</title>
 </head>
 <body>
 

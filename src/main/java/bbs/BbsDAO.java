@@ -24,11 +24,11 @@ public class BbsDAO {
 		}
 	}
 	
-	// 현재 시간을 가져오는 메소드 - 게시글 작성 시, 현재 서버의 시간을 넣어주는 역활. (2022-10-28 이수) 
+	// 현재 시간을 가져오는 메소드 - 게시글 작성 시, 현재 서버의 시간을 넣어주는 역활. (2022-11-28 이수) 
 	 public String getDate() {
-        String SQL = "SELECT NOW()"; // 현재시간을 나타내는 MySQL문장
+        String sql = "SELECT NOW()"; // 현재시간을 나타내는 MySQL문장
         try {
-        	PreparedStatement pstmt = conn.prepareStatement(SQL);
+        	PreparedStatement pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if(rs.next()) {
                 return rs.getString(1);
@@ -40,12 +40,12 @@ public class BbsDAO {
         return ""; // 데이터베이스 오류
     }
 	
-	// 게시글 번호를 지정해주는 메소드 (2022-10-28 이수) 
+	// 게시글 번호를 지정해주는 메소드 (2022-11-28 이수) 
 	public int getNext() {
 		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-		  String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";  // 내림차순으로 가장 마지막에 쓰인 것을 가져온다
+		  String sql = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";  // 내림차순으로 가장 마지막에 쓰인 것을 가져온다
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if(rs.next()) {
             	return rs.getInt(1) + 1; // 그 다음 게시글의 번호

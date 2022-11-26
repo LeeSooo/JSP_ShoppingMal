@@ -2,17 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<html>
 <head>
+
  <!-- 반응형 웹에 사용하는 메타태그 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1" >
 
 <!-- 부트스트랩을 기본 디자인으로 사용 -->
+<link rel="stylesheet" type="text/css" href="./css/header_style.css">
+<script src="https://kit.fontawesome.com/22a8f0c699.js"></script>
+<script src="./js/main.js" defer></script>
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
-<title>JSP 쇼핑몰 웹 사이트</title>
   <link rel="stylesheet" type="text/css" href="./css/basket_style.css">
-  <script src="https://kit.fontawesome.com/22a8f0c699.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="./js/basket.js"></script>
   <style>
     * {  
@@ -21,78 +22,73 @@
         box-sizing: border-box;
     }
     li {  list-style-type: none;  }
+    a, a:hover {
+	color:#000000;
+	text-decoration: none;
+}
   </style>
 </head>
 <body>
 
 <!-- 클릭 시 화면 전환 => 주소 입력이 필요!! (2022-08-29 이수) -->
 <!-- 상단 헤더 (2022-08-29 이수) -->
- <%
-		// 로그인이 된 경우.
-		String userID = null;
-		if(session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
-
-	<!-- 상단 네비게이션 바 -->
-    <nav class ="navbar navbar-default">
-    	<!-- 홈페이지의 로고 -->
-        <div class="navbar-header"> 
-            <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                aria-expand="false">
-                <!-- 줄였을때 옆에 메뉴바 디자인 -->
-                <span class ="icon-bar"></span>
-                <span class ="icon-bar"></span>
-                <span class ="icon-bar"></span>
-            </button>
-            <a class ="navbar-brand" href="main.jsp">JSP 쇼핑몰</a>
-        </div>
-        <!-- 상단 버튼 -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="main.jsp">메인</a></li>
-                <li><a href="bbs.jsp">고객센터</a></li>
-            </ul>
-            <%
-            	if(userID == null) {
-            		// 로그인이 되어 있지 않은 경우.
-            %>
-            <!-- 상단우측 메뉴바 버튼 -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                <a href="#" class = "dropdown-toggle"
-                    data-toggle="dropdown" role ="button" 
-                    aria-haspopup="true"
-                    aria-expanded="false">접속하기<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="login.jsp">로그인</a></li>
-                        <li><a href="join.jsp">회원가입</a></li>                    
-                    </ul>
-                </li>
-            </ul>
-            <% 
-            	} else {
-            		// 로그인이 되어 있는 경우.
-           	%>
-           	<ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                <a href="#" class = "dropdown-toggle"
-                    data-toggle="dropdown" role ="button" 
-                    aria-haspopup="true"
-                    aria-expanded="false">회원관리<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="logoutAction.jsp">로그아웃</a></li>    
-                        <li><a href="basket.jsp">장바구니</a></li>                
-                    </ul>
-                </li>
-            </ul>
-             <% 
-            	}
-            %>
-        </div>
-    </nav>
+ 	<!-- 상단 헤더 (2022-11-18 이수) -->
+ 	<!-- 상단우측 메뉴바 버튼 -->
+ 	<header class="header">
+ 	<!-- 상단 메뉴버튼 -->
+ 		<!-- 상단 우측 메뉴 -->
+	 	<div class="navbar_topmenu" style="margin:0;">
+	 	<%
+			// 로그인이 된 경우.
+			String userID = null;
+			if(session.getAttribute("userID") != null) {
+				userID = (String) session.getAttribute("userID");
+		%>	
+	       	<li>
+	       	<a href="logoutAction.jsp"><i class="fa-solid fa-right-from-bracket"></i></a>
+	        |
+	       	<a href="myPage.jsp"><i class="fa-solid fa-user"></i></a>
+	       	|
+	       	<a href="basket.jsp"><i class="fa-solid fa-basket-shopping"></i></a>
+	       	</li> <p>
+	       	
+       	 <%
+			}
+      		// 로그인이 되어 있지 않은 경우.
+      		else if(userID == null) {
+         %>
+	       	<li>
+	       	<a href="login.jsp"><i class="fa-solid fa-lock"></i></a>
+	       	|
+	       	<a href="join.jsp"><i class="fa-solid fa-user-plus"></i></a>
+	       	|
+	       	<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+	       	</li> <p>
+	       	<%
+          	}
+       		%>
+	    </div>
+	    
+	    <!-- 토글버튼 -->
+		<a href="#" class="navbar_toggleBtn">
+	       	<i class="fa-solid fa-bars"></i>
+	   	</a>
+	    
+	    <!-- 상단 로고 -->
+		<div class="header_logo"">
+			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>ShoppingMal</a>
+		</div>
+		
+		<!-- 상단 센터메뉴 -->
+		<div class="navbar_centermenu" style="margin-bottom: 10px;">
+			<ul>
+				<li><a href="product.jsp">모든상품</a></li>
+				<li><a href="#">인기상품</a></li>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="bbs.jsp">고객센터</a></li>
+			</ul>
+		</div>
+   	</header>
 
 <!-- 메인 콘텐츠 (2022-08-29 이수) -->
 <!-- 1. 장바구니 (2022-08-29 이수) -->

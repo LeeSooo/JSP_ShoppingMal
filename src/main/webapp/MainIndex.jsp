@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="product.ProductDAO"%>
+<%@page import="product.ProductListBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,7 +28,7 @@
 	li{
 		 list-style:none;
 	}
-  </style>
+ </style>
 </head>
 <body>
 <!-- 상단 헤더 (2022-11-18 이수) -->
@@ -78,8 +81,8 @@
 		<!-- 상단 센터메뉴 -->
 		<div class="navbar_centermenu">
 			<ul>
-				<li><a href="#">모든상품</a></li>
-				<li><a href="#">인기상품</a></li>
+				<li><a href="product.jsp">모든상품</a></li>
+				<li><a href="productSerch.jsp">상품검색</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>
 			</ul>
@@ -88,12 +91,31 @@
    	
    	<!-- 중간화면 -->
    	<section class="section">
+   	<%
+   		// DB에 있는 제품 3개 가져옴.
+   		ProductDAO pdao = new ProductDAO();
+   		ArrayList<ProductListBean> arr = pdao.getSelecter();
+   	%>   	
    		<div class="section_header">
    			<img src="img/mainpageIMG.png" width="680" height="300">
    		</div>
    		<div class="article" style="text-align: center;"> 
             <h1>Best Pick</h1> <p>
             
+            <table align="center" justify-content= "center" style="margin-left: auto; margin-right: auto;">
+            	<tr>
+            	<%
+            		for(int i=0; i < arr.size(); i++) {
+            			ProductListBean bean = arr.get(i);
+            	%>
+            		<td align="center">
+	            		<a href="ProductInfo.jsp?no=<%=bean.getNo()%>">
+	            		<img alt="" src="img/<%=bean.getImg()%>" width="215" height="160" style="margin:10px;">
+	            		</a><p> <%=bean.getName()%>
+            		</td>
+            		<% } %>
+           		</tr>
+            </table>
     	</div>
 	</section>
 </html>

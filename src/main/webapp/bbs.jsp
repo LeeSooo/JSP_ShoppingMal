@@ -8,9 +8,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="./css/header_style.css">
+<script src="https://kit.fontawesome.com/22a8f0c699.js"></script>
 <!-- 부트스트랩을 기본 디자인으로 사용 -->
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
-<script src="https://kit.fontawesome.com/22a8f0c699.js"></script>
 <script src="./js/main.js" defer></script>
 <title>고객센터</title>
 <style type="text/css">
@@ -87,7 +87,7 @@
 		<!-- 상단 센터메뉴 -->
 		<div class="navbar_centermenu">
 			<ul>
-				<li><a href="#">모든상품</a></li>
+				<li><a href="product.jsp">모든상품</a></li>
 				<li><a href="#">인기상품</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>

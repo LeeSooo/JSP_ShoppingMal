@@ -23,12 +23,11 @@
 <title>JSP 쇼핑몰 웹 사이트</title>
 </head>
 <body>
-
 	<%
 		// 로그인이 되어있는 경우.
 			String userID = null;
 			if(session.getAttribute("userID") != null) {
-				userID = (String) session.getAttribute("userID");
+				userID = (String)session.getAttribute("userID");
 			}
 			if(userID != null) {
 				PrintWriter script = response.getWriter();
@@ -53,7 +52,7 @@
 			int result = userDAO.join(user);
 			
 			// 회원가입 실패한 경우.
-			if(result == 1) {
+			if(result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('이미 존재하는 아이디입니다.')");
@@ -66,6 +65,7 @@
 				session.setAttribute("userID", user.getUserID());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
+				//script.println("alert('"+ user.getUserPassword()+"///"+result+"')");
 				script.println("alert('회원가입에 성공하셨습니다.')");
 				script.println("location.href = 'main.jsp'");
 				script.println("</script>");
