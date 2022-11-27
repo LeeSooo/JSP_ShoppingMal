@@ -12,7 +12,6 @@ public class SHA256 {
 
         return bytesToHex(md.digest());
     }
-
     private String bytesToHex(byte[] bytes) {
         StringBuilder builder = new StringBuilder();
         for (byte b : bytes) {
@@ -20,5 +19,4 @@ public class SHA256 {
         }
         return builder.toString().substring(0, 16); 
     }
-
 }

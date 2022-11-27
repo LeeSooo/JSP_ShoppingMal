@@ -41,6 +41,7 @@
 			session.setAttribute("userID", user.getUserID());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
+			script.println("alert('로그인에 성공하셨습니다.')");
 			script.println("location.href = 'MainIndex.jsp'");
 			script.println("</script>");
 		}

@@ -67,7 +67,7 @@
 				script.println("<script>");
 				//script.println("alert('"+ user.getUserPassword()+"///"+result+"')");
 				script.println("alert('회원가입에 성공하셨습니다.')");
-				script.println("location.href = 'main.jsp'");
+				script.println("location.href = 'MainIndex.jsp'");
 				script.println("</script>");
 			}
 		}

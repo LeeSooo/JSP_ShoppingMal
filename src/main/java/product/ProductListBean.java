@@ -4,9 +4,12 @@ package product;
 public class ProductListBean {
 	private int no;
 	private String name;
-	private String info;
 	private int price;
+	private int rentalprice;
+	private String category;
+	private String info;
 	private String img;
+	
 	public int getNo() {
 		return no;
 	}
@@ -19,17 +22,29 @@ public class ProductListBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getRentalprice() {
+		return rentalprice;
+	}
+	public void setRentalprice(int rentalprice) {
+		this.rentalprice = rentalprice;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
 	}
 	public String getImg() {
 		return img;
@@ -37,5 +52,4 @@ public class ProductListBean {
 	public void setImg(String img) {
 		this.img = img;
 	}
-
 }
