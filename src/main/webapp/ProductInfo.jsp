@@ -98,7 +98,7 @@
 	<!-- 중간화면 -->
    	<section class="section">
    		<div class="article" style="text-align: center; align-items: center; padding-top:50px;"> 
-	   		<form action="order.jsp" Method="post">
+	   		<form action="OrderAction.jsp" Method="get">
 	            <table style="margin-left: auto; margin-right: auto;">
 	            	<tr>
 	            		<td rowspan="8" width="500" align="center">
@@ -173,9 +173,9 @@
 	           		</tr>
 	           		<tr>
 	           			<td align="center">
-	           				<input type="hidden" name="no" values="<%=bean.getNo()%>">
-	           				<input type="hidden" name="name" values="<%=bean.getName()%>">
-	           				<input type="hidden" name="img" values="<%=bean.getImg()%>">
+	           				<input type="hidden" name="no" value="<%=bean.getNo()%>">
+	           				<input type="hidden" name="name" value="<%=bean.getName()%>">
+	           				<input type="hidden" name="img" value="<%=bean.getImg()%>">
 		            		<input type="submit" value="예약설정하기" style="WIDTH: 200px; HEIGHT: 30px; 
 		            		text-align: center; margin-left:auto;margin-right:auto;">
 	            		</td>

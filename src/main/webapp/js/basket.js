@@ -1,4 +1,4 @@
-/* 장바구니 페이지 이벤트 처리 / 코드 수정 및 변경 (2022-09-03 이수) */
+/* 장바구니 페이지 이벤트 처리 / 코드 수정 및 변경 (2022-12-03 이수) */
 let basket = {
     totalCount: 0, 
     totalPrice: 0,
@@ -8,6 +8,8 @@ let basket = {
             item.parentElement.parentElement.parentElement.remove();
         });
         //AJAX 서버 업데이트 전송
+    	
+    
     
         //전송 처리 결과가 성공이면
         this.reCalc();
@@ -34,6 +36,7 @@ let basket = {
             if(item.parentElement.parentElement.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.firstElementChild.firstElementChild.checked == true){
                 let count = parseInt(item.getAttribute('value'));
                 this.totalCount += count;
+                
                 let price = item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.getAttribute('value');
                 this.totalPrice += count * price;
             }

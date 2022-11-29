@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="product.*" import="java.util.*"
+	import="java.text.SimpleDateFormat"%>
+	<%@page import="rent.*"%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -149,131 +152,82 @@
         <!-- 장바구니 테이블 (2022-11-31 이수) -->
         <div class="basketdiv" id="basket">
             <!-- 테이블의 상단 목록 (2022-11-31 이수) -->
-            <table width="100%">
-                <tr>
-                    <div class="row head"> 
-                        <th width="10%">이미지</th>
-                        <th width="50%">상품명</th>
-                        <th width="10%">사이즈</th>
-                        <th width="10%">가격</th>
-                        <th width="10%">수량</th>
-                        <th width="10%">합계</th>
-                    </div>
-                </tr>
+            <!-- 테이블의 상단 목록 (2022-11-30 이수) -->
+				<table width="100%">
+					<tr>
+						<div class="row head">
+							<th width="10%">번호</th>
+							<th width="10%">이미지</th>
+							<th width="30%">상품명</th>
+							<th width="10%">대여시작일</th>
+							<th width="10%">대여기간</th>
+							<th width="10%">수량</th>
+							<th width="20%">합계</th>
+						</div>
+					</tr>
 
-                <!-- 테이블의 내부 목록 (2022-11-31 이수) -->
-                <tr>
-                    <div class="row data"> 
-                        <th width="10%">
-                            <div class="img">
-                                <img src="./img/basket1.jpg" width="60">
-                            </div>
-                        </th>
-                        <th width="50%">
-                            <div class="pname">
-                                <span>나이키 덩크 로우 블랙</span>
-                            </div>
-                        </th>
-                        <th width="10%">
-                            <div class="size">
-                                265
-                            </div>
-                        </th>
-                        <div class="subdiv">
-                            <th width="10%">
-                                <div class="basketprice">
-                                    <input type="hidden" name="p_price" id="p_price1" class="p_price" value="173000">173,000원
-                                </div>
-                            </th>
-                            <th width="10%">
-                                <div class="num">  
-                                    2
-                                </div>
-                            </th>
-                            <th width="10%">
-                                <div class="sum">
-                                    346,000원
-                                </div>
-                            </th>
-                        </div>
-                    </div>
-                </tr>
-
-                <!-- 테이블의 내부 목록 (2022-08-31 이수) -->
-                <tr>
-                    <div class="row data"> 
-                        <th width="10%">
-                            <div class="img">
-                                <img src="./img/basket2.jpg" width="60">
-                            </div>
-                        </th>
-                        <th width="50%">
-                            <div class="pname">
-                                <span>조던 1 x 트래비스 스캇 레트로 로우 OG SP 세일 앤 리저록</span>
-                            </div>
-                        </th>
-                        <th width="10%">
-                            <div class="size">
-                                265
-                            </div>
-                        </th>
-                        <div class="subdiv">
-                            <th width="10%">
-                                <div class="basketprice">
-                                    <input type="hidden" name="p_price" id="p_price2" class="p_price" value="1525000">1,525,000원
-                                </div>
-                            </th>
-                            <th width="10%">
-                                <div class="num">
-                                    1
-                                </div>
-                            </th>
-                            <th width="10%">
-                                <div class="sum">
-                                    1,525,000원
-                                </div>
-                            </th>
-                        </div>
-                    </div>
-                </tr>
-                <!-- 테이블의 내부 목록 (2022-08-31 이수) -->
-                <tr>
-                    <div class="row data">
-                        <th width="10%">
-                            <div class="img">
-                                <img src="./img/basket3.jpg" width="60">
-                            </div>
-                        </th>
-                        <th width="50%">
-                            <div class="pname">
-                                <span>나이키 에어포스 1 '07 로우 화이트</span>
-                            </div>
-                        </th>
-                        <th width="10%">
-                            <div class="size">
-                                265
-                            </div>
-                        </th>
-                        <div class="subdiv">
-                            <th width="10%">
-                                <div class="basketprice">
-                                    <input type="hidden" name="p_price" id="p_price3" class="p_price" value="121000">121,000원
-                                </div>
-                            </th>
-                            <th width="10%"> 
-                                <div class="num">
-                                    1
-                                </div>
-                            </th>
-                            <th width="10%">
-                                <div class="sum">
-                                    121,000원
-                                </div>
-                            </th>
-                        </div>
-                    </div>
-                </tr>
-            </table>
+					<!-- 테이블의 내부 목록 (2022-11-30 이수) -->
+					<!-- DB 수정하기 -->
+					<%
+			   		RentDAO rdao = new RentDAO();	// 예약 객체
+			   		ArrayList<ReservationBean> rarr = rdao.getAllReserve((String)session.getAttribute("userID"));
+			   		int sum = 0;
+			   		int cnt = 0;
+			   		for(int i=0; i < rarr.size(); i++) {
+    					ReservationBean rbean = rarr.get(i);
+    					ProductDAO pdao = new ProductDAO(); // 상품객체
+    					ProductListBean bean = pdao.getProductInfo(rbean.getNo());
+		   		%>
+		   		<!--  <input type="hidden" name="reserveNo" value="<%=rbean.getReserveNo()%>">-->
+					<tr>
+						<div class="row data">
+							<th width="10%">
+								<div class="check">
+								<%=i+1%>
+									<!-- <input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp; -->
+								</div>
+							</th>
+							<th width="10%">
+								<div class="img">
+									<img src="./img/<%=bean.getImg()%>" width="60">
+								</div>
+							</th>
+							<th width="30%">
+								<div class="pname">
+									<span><%=bean.getName()%></span>
+								</div>
+							</th>
+							<th width="10%">
+								<div class="size">
+									<span><%=rbean.getRday()%></span>
+								</div>
+							</th>
+							<div class="subdiv">
+								<th width="10%">
+									<div class="basketprice">
+										<span><%=rbean.getDay()%></span>
+									</div>
+								</th>
+								<th width="20%">
+									<div class="num">
+										<div class="updown">
+											<span><%=rbean.getQty()%></span>
+										</div>
+									</div>
+								</th>
+								<th width="10%">
+									<div class="sum"><%=bean.getRentalprice()*rbean.getDay()*rbean.getQty()%>원</div>
+								</th>
+							</div>
+						</div>
+					</tr>
+					<% 
+							cnt += rbean.getQty();
+							sum += bean.getRentalprice()*rbean.getDay()*rbean.getQty();
+						}
+			   		%>
+					
+				</table>
         </div>
 
         <!-- 하단 버튼 (2022-08-31 이수) -->

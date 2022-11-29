@@ -100,36 +100,6 @@
 	
 	<%
 		String id = (String)session.getAttribute("id");
-	
-		// 로그인이 안되어있는 경우.
-		if(session.getAttribute("userID") == null) {
-	%>	
-		<script>
-			alert("로그인 후 예약이 가능합니다.");
-		</script>
-	<%
-			response.sendRedirect("MainIndex.jsp");
-		}
-		
-		Date d1 = new Date();
-		Date d2 = null;
-		
-		// 예약하는 날짜보다 현재 날짜와 비교.
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		d1 = sdf.parse(rbean.getRday());
-		d2 = sdf.parse(sdf.format(d2));
-		
-		// 날짜 비교
-		int compare = d1.compareTo(d2);
-		
-		if(compare < 0) { // 당일 이전은 예약이 불가능함.
-	%>
-		<script>
-			alert("지난날짜는 선택할 수 없습니다.");
-			history.go(-1);
-		</script>
-	<%
-		}
 		ProductDAO pdao = new ProductDAO();
 		rbean.setId(id);
 		pdao.setReserve(rbean);
@@ -199,8 +169,5 @@
 			</div>
 		</form>
 	</section>
-	<%
-		}
-	%>
 </body>
 </html>
