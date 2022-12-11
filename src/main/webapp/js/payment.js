@@ -1,8 +1,7 @@
 /* 결제 진행 함수 (2022-09-04 이수) - * 정보가 유출되지 않도록 유의해 주세요!!* */
-function pay(name,email,phone,address,postcode,totalPrice) {
-    
+function pay(name,email,phone,address1,postcode,totalPrice,id1,product) {
     if ( document.getElementById( 'recipientname' ).value == "" || document.getElementById( 'email' ).value == "" ||
-    document.getElementById( 'phone' ).value == "" || document.getElementById( 'address' ).value == "" || 
+    document.getElementById( 'phone' ).value == "" || document.getElementById( 'address1' ).value == "" || 
     document.getElementById( 'postcode' ).value == "") {
         alert("수령자 정보를 재대로 입력해주세요.");
     }
@@ -21,7 +20,7 @@ function pay(name,email,phone,address,postcode,totalPrice) {
             buyer_email : email,
             buyer_name : name,
             buyer_tel : phone,
-            buyer_addr : address,
+            buyer_addr : address1,
             buyer_postcode : postcode 
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
@@ -43,22 +42,24 @@ function pay(name,email,phone,address,postcode,totalPrice) {
                         msg += '\n상점 거래ID : ' + rsp.merchant_uid;
                         msg += '\n결제 금액 : ' + rsp.paid_amount;
                         msg += '\n카드 승인번호 : ' + rsp.apply_num;
-                        
-                        alert(msg);
+                        //성공시 이동할 페이지
+                		location.href = "PaymentAction.jsp?_id="+id1+"&_date=2022-12-11&_address="+address1+"&_product="+product+"&_totalPrice="+totalPrice;
+            			alert(msg);
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                     }
                 });
-                //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
+        		//성공시 이동할 페이지
+                location.href = "PaymentAction.jsp?_id="+id1+"&_date=2022-12-11&_address="+address1+"&_product="+product+"&_totalPrice="+totalPrice;
             } else {
                 msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
+ 	               msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/order/payFail";
+                //location.href="<%=request.getContextPath()%>/order/payFail";
+                location.href = "MainIndex.jsp";
                 alert(msg);
-            }
+			}
         });
     }
 }

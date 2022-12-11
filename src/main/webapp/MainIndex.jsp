@@ -1,3 +1,4 @@
+<!-- 2022-12-02 이수 -->
 <%@page import="java.util.ArrayList"%>
 <%@page import="product.ProductDAO"%>
 <%@page import="product.ProductListBean"%>
@@ -9,7 +10,7 @@
 <meta charset="utf-8">
    <link rel="stylesheet" type="text/css" href="./css/header_style.css">
    <link rel="stylesheet" type="text/css" href="./css/main_style.css">
-   <!-- 부트스트랩을 기본 디자인으로 사용 -->
+<!-- 부트스트랩을 기본 디자인으로 사용 -->
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
     <script src="https://kit.fontawesome.com/22a8f0c699.js" crossorigin="anonymous"></script>
     <script src="./js/main.js" defer></script>
@@ -61,7 +62,7 @@
 	       	|
 	       	<a href="join.jsp"><i class="fa-solid fa-user-plus"></i></a>
 	       	|
-	       	<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+	       	<a href="ResetPassword.jsp"><i class="fa-solid fa-magnifying-glass"></i></a>
 	       	</li> <p>
 	       	<%
           	}
@@ -75,15 +76,14 @@
 	    
 	    <!-- 상단 로고 -->
 		<div class="header_logo">
-			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>ShoppingMal</a>
+			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>RentalCloset</a>
 		</div>
 		
 		<!-- 상단 센터메뉴 -->
 		<div class="navbar_centermenu">
 			<ul>
 				<li><a href="product.jsp">모든상품</a></li>
-				<li><a href="ProductSearch">상품검색</a></li>
-				<li><a href="#">공지사항</a></li>
+				<li><a href="SearchProduct.jsp">상품검색</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>
 			</ul>
 		</div>
@@ -111,9 +111,9 @@
             		<td align="center" style="flex-wrap: wrap;" width="225" height="160" >
 	            		<a href="ProductInfo.jsp?no=<%=bean.getNo()%>">
 	            		<img alt="" src="img/<%=bean.getImg()%>" width="215" height="160"style="margin:10px; text-align: center; ">
-	            		</a><p> <li style="margin:10px; align-content: flex-start;" ><%=bean.getName()%></li>
+	            		</a><p> <li style="margin:10px; align-content: flex-start;"><%=bean.getName()%></li>
             		</td>
-            		<% } %>
+           		<% } %>
            		</tr>
             </table>
     	</div>

@@ -1,8 +1,10 @@
+<!-- 2022-12-02 이수 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="product.*" import="java.util.*"
 	import="java.text.SimpleDateFormat"%>
 	<%@page import="rent.*"%>
+	<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -11,7 +13,6 @@
     <script src="https://kit.fontawesome.com/22a8f0c699.js" crossorigin="anonymous"></script>
     <script src="./js/main.js" defer></script>
     <script src="./js/payment.js" defer></script>
-    <script type="text/javascript" src="./js/payment.js"></script>
 
     <!-- 결제 관련 스크립트 (2022-12-04 이수)-->
     <!-- jQuery -->
@@ -92,12 +93,10 @@
 			</ul>
 		</div>
    	</header>
-
 	<!-- 메인 콘텐츠 (2022-11-29 이수) -->
 	<section id="Order_Payment">
     <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
         <input type="hidden" name="order" value="order">
-
         <!-- 1. 수령자 정보 - name,mail,phone,address,totalPrice (2022-12-03) -->
         <div class="page-maincontent">
             <h1 style="width:193px; height: 48px;; overflow:hiddlen; white-space:nowrap;">
@@ -131,7 +130,7 @@
                 <tr>
                     <th width="30%">배송지 주소</th>
                         <th width="70%">
-                            <input type="text" name="address" id="address" class="address" value="" >
+                            <input type="text" name="address1" id="address1" class="address1" value="" >
                         </th>
                 </tr>
                 <tr>
@@ -165,7 +164,6 @@
 							<th width="20%">합계</th>
 						</div>
 					</tr>
-
 					<!-- 테이블의 내부 목록 (2022-11-30 이수) -->
 					<!-- DB 수정하기 -->
 					<%
@@ -173,6 +171,7 @@
 			   		ArrayList<ReservationBean> rarr = rdao.getAllReserve((String)session.getAttribute("userID"));
 			   		int sum = 0;
 			   		int cnt = 0;
+			   		String productList="";
 			   		for(int i=0; i < rarr.size(); i++) {
     					ReservationBean rbean = rarr.get(i);
     					ProductDAO pdao = new ProductDAO(); // 상품객체
@@ -195,6 +194,7 @@
 							<th width="30%">
 								<div class="pname">
 									<span><%=bean.getName()%></span>
+									<% productList += bean.getNo()+","; %>
 								</div>
 							</th>
 							<th width="10%">
@@ -226,15 +226,18 @@
 							sum += bean.getRentalprice()*rbean.getDay()*rbean.getQty();
 						}
 			   		%>
-					
 				</table>
+				<% String id = (String)session.getAttribute("userID");%>
+				<input type="hidden" id="id1" value="<%=(String)session.getAttribute("userID")%>">
+				<input type="hidden" id="product" value="<%=productList%>">
+				<input type="hidden" id="totalPrice" value="<%=sum%>">
         </div>
 
         <!-- 하단 버튼 (2022-08-31 이수) -->
         <!-- 최소 결제 금액 100원 이상부터! (2022-09-04 이수)-->
         <nav class="bottombar">
-            <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
-            <div class="bigtext right-align box blue summoney" id="totalPrice" value="1000">합계금액: 74,200원</div>
+            <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: <%=cnt %>개</div>
+            <div class="bigtext right-align box blue summoney"><%=sum%>원</div>
         </nav>
         
         <!--수령자 정보 저장 변수 (2022-09-04 이수) --> 
@@ -242,15 +245,21 @@
             const name = document.getElementById( 'recipientname' ).value;
             const email = document.getElementById( 'email' ).value;
             const phone = document.getElementById( 'phone' ).value;
-            const address = document.getElementById( 'address' ).value;
+            const address1 = document.getElementById( 'address1' ).value;
             const postcode = document.getElementById( 'postcode' ).value;
-            const totalPrice = document.getElementById( 'totalPrice' ).getAttributeNames('value');
+            const totalPrice = document.getElementById( 'totalPrice' ).value;
+            
+            // 구매정보(2022-12-10 이수) - 주문번호, 구매자 ID, 주문날짜, 주소, 상품, 총 금액 
+            const id1 = document.getElementById( 'id1' ).value;	// 구매자 아이디
+            const product = document.getElementById( 'product' ).value;	// 구매 상품 리스트
+            
         </script>
+        
 
         <!-- 결제 버튼 (2022-09-04 이수) -->
         <nav class="goorder">
             <div class="buttongroup center-align cmd">
-                <a onclick='javascript:pay(name,email,phone,address,postcode,totalPrice)'>상품 주문</a>
+                <a onclick='javascript:pay(name,email,phone,address1,postcode,totalPrice,id1,product)'>상품 주문</a>
             </div>
         </nav>
     </form>

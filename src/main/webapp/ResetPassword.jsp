@@ -1,18 +1,18 @@
-<!-- 회원가입 페이지 (2022-11-28 이수) -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
- <!-- 반응형 웹에 사용하는 메타태그 -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width", initial-scale="1" >
-
-<!-- 부트스트랩을 기본 디자인으로 사용 -->
-<link rel="stylesheet" type="text/css" href="./css/header_style.css">
-<link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
-<script src="https://kit.fontawesome.com/22a8f0c699.js"></script>
-<script src="./js/main.js" defer></script>
-<style type="text/css">
+<meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="./css/header_style.css">
+   <link rel="stylesheet" type="text/css" href="./css/main_style.css">
+   <!-- 부트스트랩을 기본 디자인으로 사용 -->
+	<link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조 -->
+    <script src="https://kit.fontawesome.com/22a8f0c699.js" crossorigin="anonymous"></script>
+    <script src="./js/main.js" defer></script>
+    
+  <title> 메인페이지</title>
+ <style type="text/css">
 * {  
        margin: 0;  
        padding: 0;
@@ -133,10 +133,9 @@ input[type="submit"]:hover{
   text-decoration: underline;
 }
 </style>
-<title>JSP 쇼핑몰 웹 사이트</title>
 </head>
 <body>
-	<!-- 상단 헤더 (2022-11-18 이수) -->
+<!-- 상단 헤더 (2022-11-18 이수) -->
  	<!-- 상단우측 메뉴바 버튼 -->
  	<header class="header">
  	<!-- 상단 메뉴버튼 -->
@@ -179,7 +178,7 @@ input[type="submit"]:hover{
 	   	</a>
 	    
 	    <!-- 상단 로고 -->
-		<div class="header_logo"">
+		<div class="header_logo">
 			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>ShoppingMal</a>
 		</div>
 		
@@ -187,23 +186,19 @@ input[type="submit"]:hover{
 		<div class="navbar_centermenu">
 			<ul>
 				<li><a href="product.jsp">모든상품</a></li>
-				<li><a href="#">인기상품</a></li>
+				<li><a href="ProductSearch">상품검색</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>
 			</ul>
 		</div>
    	</header>
-    
-    <!-- 회원가입 화면 -->
+   	<!-- 비밀번호 재설정 화면 (2022-12-11 이수) -->
    <div class="login" style= "margin-top:20px;">
-   <h1>회원가입</h1>
-		<!-- 회원가입 정보 전달 -->
-		<form method = "post" action="joinAction.jsp">
+   <h1>비밀번호 재설정</h1>
+		<!-- 비밀번호 정보 전달 -->
+		<form method = "post" action="ResetPasswordaAction.jsp">
             <div class ="form-group">
                 <input type="text" class="form-control" placeholder="아이디" name="userID" maxlength='20' required>
-            </div>
-            <div class ="form-group">
-                <input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength='20' required>
             </div>
             <div class ="form-group">
                 <input type="text" class="form-control" placeholder="이름" name="userName" maxlength='20' required>
@@ -214,19 +209,12 @@ input[type="submit"]:hover{
             <div class ="form-group">
                 <input type="text" class="form-control" placeholder="전화번호" name="userPhone" maxlength='30' required>
             </div>
-             <div class ="form-group">
-                <input type="text" class="form-control" placeholder="주소" name="userAddress" maxlength='50' required>
-            </div>
             <div class ="form-group">
-                <input type="text" class="form-control" placeholder="우편번호" name="userPostcode" maxlength='20' required>
+                <input type="text" class="form-control" placeholder="비밀번호" name="pw" maxlength='30' value="" required>
             </div>
-            <div class ="form-group">
-            	<div class="btn-group" data-toggle="buttons" style="text-align: center; display: flex; padding: 20px;">
-                    	<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
-                    	<input type="radio" name="userGender" autocomplete="off" value="여자">여자
-               	</div>    
-            </div>
-                   <input type="submit" class="btn btn-primary form-control" value="회원가입" style="margin-bottom: 10px;">
+            <div>
+                   <input type="submit" class="btn btn-primary form-control" value="비밀번호 재설정" style="margin-bottom: 10px;">
+            </div>      
         </form>
      </div> 
 </body>

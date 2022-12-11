@@ -16,18 +16,19 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 쇼핑몰 웹 사이트</title>
   <style>
-    * {  
+   * {  
         margin: 0;  
         padding: 0;
         box-sizing: border-box;
     }
-    a {
-	text-decoration: none;
-	color: black;
-	}	
-    li {  list-style-type: none;  }
-  </style>
-</head>
+	a, a:hover {
+		color:#000000;
+		text-decoration: none;
+	}
+	li{
+		 list-style:none;
+	}
+ </style>
 <body>
 	<!-- 상단 헤더 (2022-11-18 이수) -->
  	<!-- 상단우측 메뉴바 버튼 -->
@@ -59,7 +60,7 @@
 	       	|
 	       	<a href="join.jsp"><i class="fa-solid fa-user-plus"></i></a>
 	       	|
-	       	<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+	       	<a href="ResetPassword.jsp"><i class="fa-solid fa-magnifying-glass"></i></a>
 	       	</li> <p>
 	       	<%
           	}
@@ -72,16 +73,15 @@
 	   	</a>
 	    
 	    <!-- 상단 로고 -->
-		<div class="header_logo"">
-			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>ShoppingMal</a>
+		<div class="header_logo">
+			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>RentalCloset</a>
 		</div>
 		
 		<!-- 상단 센터메뉴 -->
 		<div class="navbar_centermenu">
 			<ul>
 				<li><a href="product.jsp">모든상품</a></li>
-				<li><a href="#">인기상품</a></li>
-				<li><a href="#">공지사항</a></li>
+				<li><a href="SearchProduct.jsp">상품검색</a></li>
 				<li><a href="bbs.jsp">고객센터</a></li>
 			</ul>
 		</div>

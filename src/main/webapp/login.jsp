@@ -181,7 +181,7 @@ input[type="submit"]:hover{
 	   	</a>
 	    
 	    <!-- 상단 로고 -->
-		<div class="header_logo"">
+		<div class="header_logo">
 			<a href="MainIndex.jsp"><i class="fa-solid fa-tags"></i>ShoppingMal</a>
 		</div>
 		

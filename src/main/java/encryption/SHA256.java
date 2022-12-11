@@ -17,6 +17,6 @@ public class SHA256 {
         for (byte b : bytes) {
             builder.append(String.format("%02x", b));
         }
-        return builder.toString().substring(0, 16); 
+        return builder.toString(); 
     }
 }

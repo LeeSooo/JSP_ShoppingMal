@@ -1,3 +1,4 @@
+<!-- 2022-12-02 이수 -->
 <%@page import="product.ProductListBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="product.ProductDAO"%>
@@ -33,7 +34,6 @@
 <body>
 <%
 	int no = Integer.parseInt(request.getParameter("no"));
-
 	// DB에서 정보 가져오기
 	ProductDAO pdao = new ProductDAO();
 	ProductListBean bean = pdao.getProductInfo(no);

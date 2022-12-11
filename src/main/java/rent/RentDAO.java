@@ -87,4 +87,17 @@ public class RentDAO {
 		}
 		return arr;
 	}
+	
+	// 구매 후 장바구니 삭제하는 메소드 (2022-12-11 이수)
+	public int setDeleteReserve(String id) {
+		try {
+			String sql = "DELETE FROM reserve WHERE id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;			// DB 오류.
+	}
 }

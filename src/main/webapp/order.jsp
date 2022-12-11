@@ -1,3 +1,4 @@
+<!-- 2022-12-02 이수 -->
 <%@page import="product.ProductDAO"%>
 <%@page import="java.text.SimpleDateFormat" import="java.sql.Date" import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -102,7 +103,7 @@
 		String id = (String)session.getAttribute("id");
 		ProductDAO pdao = new ProductDAO();
 		rbean.setId(id);
-		pdao.setReserve(rbean);
+		//pdao.setReserve(rbean);
 	%>
 	<section class="section">
 		<form action="basket.jsp" method="post">

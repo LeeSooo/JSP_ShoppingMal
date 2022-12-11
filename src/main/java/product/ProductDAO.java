@@ -60,52 +60,27 @@ public class ProductDAO {
 		
 		// 데이터를 저장할 객체선언
 		ProductListBean bean = null;
-		if(search.equals("")) {
-			try {
-				// 검색된 내용이 없으면 전체 상품을 가져오기.
-				String sql = "SELECT * FROM product";
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				
-				// 반복문을 이용해서 검색된 제품 가져오기.
-				while(rs.next()) {
-					bean = new ProductListBean();
-					bean.setNo(rs.getInt(1));
-					bean.setName(rs.getString(2));
-					bean.setPrice(rs.getInt(3));
-					bean.setRentalprice(rs.getInt(4));
-					bean.setCategory(rs.getString(5));
-					bean.setInfo(rs.getString(6));
-					bean.setImg(rs.getString(7));
-					arr.add(bean);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			// 검색된 제품 가져오기.
+			String sql = "SELECT * FROM product WHERE name = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			rs = pstmt.executeQuery();
+			
+			// 반복문을 이용해서 검색된 제품 가져오기.
+			while(rs.next()) {
+				bean = new ProductListBean();
+				bean.setNo(rs.getInt(1));
+				bean.setName(rs.getString(2));
+				bean.setPrice(rs.getInt(3));
+				bean.setRentalprice(rs.getInt(4));
+				bean.setCategory(rs.getString(5));
+				bean.setInfo(rs.getString(6));
+				bean.setImg(rs.getString(7));
+				arr.add(bean);
 			}
-		}
-		else {
-			try {
-				// 검색된 제품 가져오기.
-				String sql = "SELECT * FROM product WHERE name = ?";
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, search);
-				rs = pstmt.executeQuery();
-				
-				// 반복문을 이용해서 검색된 제품 가져오기.
-				while(rs.next()) {
-					bean = new ProductListBean();
-					bean.setNo(rs.getInt(1));
-					bean.setName(rs.getString(2));
-					bean.setPrice(rs.getInt(3));
-					bean.setRentalprice(rs.getInt(4));
-					bean.setCategory(rs.getString(5));
-					bean.setInfo(rs.getString(6));
-					bean.setImg(rs.getString(7));
-					arr.add(bean);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return arr;
 	}
