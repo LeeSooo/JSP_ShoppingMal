@@ -6,7 +6,7 @@ function pay(name,email,phone,address1,postcode,totalPrice,id1,product) {
         alert("수령자 정보를 재대로 입력해주세요.");
     }
     else {
-        let code = 'imp76637626'; // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용   // ** 정보가 유출되지 않도록 유의해 주세요!! (2022-09-04 이수)**
+        let code = 드식별코드'; // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용   // ** 정보가 유출되지 않도록 유의해 주세요!! (2022-09-04 이수)**
         let IMP = window.IMP; // [생략가능] window : 전역객체를 의미(현재 창 자신을 의미) (2022-09-04 이수)
         IMP.init(code); 
         let msg;
